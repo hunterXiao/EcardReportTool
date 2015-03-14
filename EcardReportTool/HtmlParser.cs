@@ -4,18 +4,23 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using HtmlAgilityPack;
+using System.Web;
+using System.Net;
 
 namespace EcardReportTool
 {
    public class HtmlParser
     {
-       static string VIEWSTATE = string.Empty;
 
-
-       public static string GetViewState(Stream httpStream) {
+       public static string GetViewState(ReturnValue retVal) {
+           byte[] bArray = Encoding.Default.GetBytes(retVal.RetStr);
+           MemoryStream ms = new MemoryStream(bArray);
            HtmlDocument doc = new HtmlDocument();
-           doc.Load(httpStream);
-
+           doc.Load(ms);
+           HtmlNode node = doc.DocumentNode.SelectSingleNode("//input[@name=\"__VIEWSTATE\"]");
+           string viewState = node.Attributes["value"].Value;
+           ms.Close();
+           return viewState;
        }
     }
 }

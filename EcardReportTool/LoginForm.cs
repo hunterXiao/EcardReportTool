@@ -29,30 +29,42 @@ namespace EcardReportTool
             {
                 this.DialogResult = DialogResult.OK;
             }
-            else {
+            else
+            {
                 MessageBox.Show("Error", "ErrorTitle", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.textBoxUserName.Clear();
                 this.textBoxPassWord.Clear();
                 this.textBoxUserName.Focus();
-                }
-            
+            }
+
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            HttpWebRequest req = WebRequest.Create(@"http://ecard.efoxconn.com/verify.aspx") as HttpWebRequest;
-            HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
-            if (resp != null)
+            try
             {
-                using (Stream s = resp.GetResponseStream())
+                HttpWebRequest req = WebRequest.Create(@"http://ecard.efoxconn.com/verify.aspx") as HttpWebRequest;
+                HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+                if (resp != null)
                 {
-                    this.labelCaptchaImage.Image = Image.FromStream(s);
+                    using (Stream s = resp.GetResponseStream())
+                    {
+                        this.labelCaptchaImage.Image = Image.FromStream(s);
+                    }
+                    //this.labelCaptchaImage.Image = Image.FromFile(@"C:\Users\Public\Pictures\Sample Pictures\Desert.jpg");
                 }
-                //this.labelCaptchaImage.Image = Image.FromFile(@"C:\Users\Public\Pictures\Sample Pictures\Desert.jpg");
+                else
+                    MessageBox.Show("Error", "error");
             }
-            else
-                MessageBox.Show("Error","error");
+            catch (WebException error)
+            {
+                DialogResult result= MessageBox.Show(error.Message, "Error", MessageBoxButtons.AbortRetryIgnore);
+                if(result==DialogResult.Abort){
+                    Application.Exit();
+                }
+            }
         }
+
 
         private void labelCaptchaImage_Click(object sender, EventArgs e)
         {

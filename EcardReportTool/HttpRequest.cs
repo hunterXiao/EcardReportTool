@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Web;
+using HtmlAgilityPack;
 
 
 namespace EcardReportTool
@@ -21,10 +22,10 @@ namespace EcardReportTool
     /// <summary>
     /// Http请求类，提供GET，POST方法及Download功能
     /// </summary>
-    public class Web
+    public class HttpRequest
     {
-        private CookieContainer cookiecontainer = new CookieContainer();
-
+        private CookieContainer cookieContainer = new CookieContainer();
+        
         /// <summary>
         /// HttpWebRequest通用headers初始化
         /// </summary>
@@ -39,7 +40,7 @@ namespace EcardReportTool
             req.ContentType = "application/x-www-form-urlencoded";
             req.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.2; .NET4.0C; .NET4.0E)";
             req.Host = host;
-            req.CookieContainer = cookiecontainer;
+            req.CookieContainer = cookieContainer;
         }
 
         public ReturnValue request(string uri, string referer)
@@ -86,6 +87,18 @@ namespace EcardReportTool
             retVal.RetStr = retStr;
             resp.Close();
             return retVal;
+        }
+
+        public static string GetViewState(ReturnValue retVal)
+        {
+            byte[] bArray = Encoding.Default.GetBytes(retVal.RetStr);
+            MemoryStream ms = new MemoryStream(bArray);
+            HtmlDocument doc = new HtmlDocument();
+            doc.Load(ms);
+            HtmlNode node = doc.DocumentNode.SelectSingleNode("//input[@name=\"__VIEWSTATE\"]");
+            string viewState = node.Attributes["value"].Value;
+            ms.Close();
+            return viewState;
         }
 
 

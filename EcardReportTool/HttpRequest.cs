@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Net;
@@ -14,18 +15,19 @@ namespace EcardReportTool
     /// <summary>
     /// Represents the return structure of HttpWebResponse
     /// </summary>
-    public struct ReturnValue {
+    public struct ReturnValue
+    {
 
         public HttpStatusCode StatusCode { get; set; }
-        public string RetStr { get; set; }
+        public Stream RetStream { get; set; }
     }
     /// <summary>
     /// Http请求类，提供GET，POST方法及Download功能
     /// </summary>
     public class HttpRequest
     {
-        private CookieContainer cookieContainer = new CookieContainer();
-        
+        private static CookieContainer cookieContainer = new CookieContainer();
+
         /// <summary>
         /// HttpWebRequest通用headers初始化
         /// </summary>
@@ -39,7 +41,8 @@ namespace EcardReportTool
             req.Referer = referer;
             req.ContentType = "application/x-www-form-urlencoded";
             req.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.2; .NET4.0C; .NET4.0E)";
-            req.Host = host;
+            //req.Host = host;
+            req.AllowAutoRedirect = false;
             req.CookieContainer = cookieContainer;
         }
 
@@ -47,17 +50,21 @@ namespace EcardReportTool
         {
             string retStr = string.Empty;
             ReturnValue retVal = new ReturnValue();
-            HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
-            Init(req, referer);
-            HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
-            using (Stream rspStream = resp.GetResponseStream())
+            try
             {
-                StreamReader sr = new StreamReader(rspStream);
-                retStr = sr.ReadToEnd().ToString();
+                HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
+
+                Init(req, referer);
+                HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+                retVal.StatusCode = resp.StatusCode;
+                retVal.RetStream = resp.GetResponseStream();
             }
-            retVal.StatusCode = resp.StatusCode;
-            retVal.RetStr = retStr;
-            resp.Close();
+            catch (WebException e)
+            {
+                if(MessageBox.Show(e.Message, "Warning", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)==DialogResult.Abort){
+                    Application.Exit();
+                }
+            }
             return retVal;
         }
 
@@ -66,38 +73,43 @@ namespace EcardReportTool
             string retStr = string.Empty;
             ReturnValue retVal = new ReturnValue();
             Encoding encode = Encoding.GetEncoding(defaultEncode);
-            HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
-            Init(req, referer);
-            string encodeData = HttpUtility.UrlEncode(postData, encode);
-            byte[] bs = Encoding.ASCII.GetBytes(encodeData);
-            req.Method = "POST";
-            req.ContentLength = bs.Length;
-            using (Stream reqStream = req.GetRequestStream())
+            try
             {
-                reqStream.Write(bs, 0, bs.Length);
-                reqStream.Close();
+                HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
+                Init(req, referer);
+                string encodeData = HttpUtility.UrlEncode(postData, encode);
+                byte[] bs = Encoding.ASCII.GetBytes(encodeData);
+                req.Method = "POST";
+                req.ContentLength = bs.Length;
+                using (Stream reqStream = req.GetRequestStream())
+                {
+                    reqStream.Write(bs, 0, bs.Length);
+                    reqStream.Close();
+                }
+                HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+                retVal.StatusCode = resp.StatusCode;
+                retVal.RetStream = resp.GetResponseStream();
             }
-            HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
-            using (Stream rspStream = resp.GetResponseStream())
+            catch (WebException e)
             {
-                StreamReader sr = new StreamReader(rspStream);
-                retStr = sr.ReadToEnd().ToString();
+                MessageBox.Show(e.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            retVal.StatusCode = resp.StatusCode;
-            retVal.RetStr = retStr;
-            resp.Close();
             return retVal;
         }
 
-        public static string GetViewState(ReturnValue retVal)
+        public string GetViewState(ReturnValue retVal)
         {
-            byte[] bArray = Encoding.Default.GetBytes(retVal.RetStr);
-            MemoryStream ms = new MemoryStream(bArray);
-            HtmlDocument doc = new HtmlDocument();
-            doc.Load(ms);
+            string viewState = string.Empty;
+            //byte[] bArray = Encoding.Default.GetBytes(retVal.RetStream);
+            //MemoryStream ms = new MemoryStream(bArray);
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc.Load(retVal.RetStream);
             HtmlNode node = doc.DocumentNode.SelectSingleNode("//input[@name=\"__VIEWSTATE\"]");
-            string viewState = node.Attributes["value"].Value;
-            ms.Close();
+            if (node != null)
+            {
+                viewState = node.Attributes["value"].Value;
+            }
+            retVal.RetStream.Close();
             return viewState;
         }
 

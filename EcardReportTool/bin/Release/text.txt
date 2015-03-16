@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=432274380">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="description" content="一个真实的网络问答社区，帮助你寻找答案，分享知识。"/>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>知乎 - 与世界分享你的知识、经验和见解</title>
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(57px).png" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(72px).png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(76px).png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(114px).png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(120px).png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(152px).png" sizes="152x152" />
+
+<link rel="shortcut icon" href="http://static.zhihu.com/static/favicon.ico" type="image/x-icon" />
+<link rel="dns-prefetch" href="p1.zhimg.com"/>
+<link rel="dns-prefetch" href="p2.zhimg.com"/>
+<link rel="dns-prefetch" href="p3.zhimg.com"/>
+<link rel="dns-prefetch" href="p4.zhimg.com"/>
+<link rel="dns-prefetch" href="comet.zhihu.com"/>
+<link rel="dns-prefetch" href="static.zhihu.com"/>
+<link rel="dns-prefetch" href="upload.zhihu.com"/>
+
+<link rel="stylesheet" href="http://static.zhihu.com/static/ver/325f70ea5ce2b05d4470303446595a2e.reg.css" type="text/css" media="screen,print" />
+
+<meta name="google-site-verification" content="FTeR0c8arOPKh8c5DYh_9uu98_zJbaWw53J-Sch9MTg" />
+<meta property="qc:admins" content="14414345146201056375" />
+<meta name="baidu-site-verification" content="KPFppAFoYF4Kkdv9" />
+
+<link rel="canonical" href="http://www.zhihu.com" />
+
+<meta id="znonce" name="znonce" content="563da2cdd7be459c8e11897fa3e51275">
+<!--[if lt IE 9]>
+<script src="http://static.zhihu.com/static/components/respond/dest/respond.min.js"></script>
+<link href="http://static.zhihu.com/static/components/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+
+<script src="http://static.zhihu.com/static/ver/07d60fc999b2336ce99022af4dd35819.instant.min.js"></script>
+</head>
+<body class="zhi">
+
+
+
+<div class="wrapper index-content-wrapper">
+<div class="top">
+<div class="inner-wrapper">
+<div class="form-wrapper" id="js-form-wrapper">
+<div class="logo"></div>
+
+<div id="js-sign-flow" class="desk-front sign-flow clearfix">
+<div class="view view-signin ">
+<form method="post" action="/login" class="zu-side-login-box">
+<input type="hidden" name="_xsrf" value="8d521e0ecc709fe8d19f34570b64864c"/>
+<div class="title clearfix">
+<a class="js-signup signup-switch with-icon" href="#signup">注册<i class="icon-sign icon-sign-arrow"></i></a>
+<a class="with-icon return">
+<i class="icon-sign icon-sign-arrow-l"></i><span class="js-title-label">登录知乎</span>
+</a>
+</div>
+<div class="email input-wrapper">
+<input required type="email" name="email" placeholder="知乎注册邮箱"
+
+>
+</div>
+<div class="input-wrapper">
+<input required type="password" name="password" maxlength="128" placeholder="密码">
+</div>
+<div class="captcha-holder">
+
+</div>
+
+<div class="button-wrapper command">
+<button class="sign-button" type="submit">登录</button>
+</div>
+<div class="signin-misc-wrapper clearfix">
+<label class="remember-me">
+<input type="checkbox" name="rememberme" checked value="y"> 记住我
+</label>
+<a class="js-resetpassword reset-password" href="#">忘记密码?</a>
+</div>
+<div class="weibo-signup-wrapper">
+社交帐号直接登录 &nbsp;
+<a class="js-bindweibo" href="javascript:;"><i class="icon-sign icon-sign-sina"></i></a>
+<a class="js-bindqq" href="javascript:;"><i class="icon-sign icon-sign-qq"></i></a>
+</div>
+</form>
+</div>
+<div class="view view-signup selected">
+<form action="/register/account" method="post" class="zu-side-login-box" id="sign-form-1" autocomplete="off">
+<input type="hidden" name="_xsrf" value="8d521e0ecc709fe8d19f34570b64864c"/>
+<div class="title clearfix">
+<a class="js-signin signin-switch with-icon" href="#signin">登录<i class="icon-sign icon-sign-arrow"></i></a>
+<a class="with-icon return"><i class="icon-sign icon-sign-arrow-l"></i><span class="js-title-label">注册帐号</span></a>
+</div>
+<div class="name input-wrapper">
+<input required name="last_name" class="first" placeholder="姓"><input required name="first_name" class="last" placeholder="名">
+</div>
+<div class="email input-wrapper">
+<input required type="email" name="email" placeholder="邮箱">
+</div>
+<div class="input-wrapper">
+<input data-rule-strongpassword="true" required type="password" maxlength="128" name="password" placeholder="密码">
+</div>
+<div class="captcha-holder"></div>
+<div class="button-wrapper command">
+<button class="sign-button" type="submit">注册知乎</button>
+</div>
+<div class="weibo-signup-wrapper">
+社交帐号直接登录 &nbsp;
+<a class="js-bindweibo" href="javascript:;"><i class="icon-sign icon-sign-sina"></i></a>
+<a class="js-bindqq" href="javascript:;"><i class="icon-sign icon-sign-qq"></i></a>
+</div>
+</form>
+</div>
+<div class="view view-info">
+<form class="login" method="post" action="/register/account">
+<div class="input-wrap realname-wrap">
+<span>
+<input required class="zg-form-text-input first" aria-label="姓" name="last_name" placeholder="姓" type="text">
+</span>
+<span>
+<input required class="zg-form-text-input" aria-label="名" name="first_name" placeholder="名" type="text">
+</span>
+</div>
+<div class="input-wrap">
+<input required class="zg-form-text-input" aria-label="邮箱" name="email" placeholder="邮 箱" spellcheck="false" type="email" value="">
+</div>
+<div class="command">
+<input class="zg-btn-blue" type="submit" value="完成注册">
+</div>
+</form>
+</div>
+<div class="view view-resetpassword">
+<form class="resetpassword" method="post" action="/resetpassword">
+<div class="input-wrap">
+<input required class="zg-form-text-input" aria-label="邮箱" name="email" placeholder="邮 箱" spellcheck="false" type="email" value="">
+</div>
+<div class="command">
+<input class="zg-btn-blue" type="submit" value="重设密码">
+<span class="reset-success" style="display:none">邮件发送成功</span>
+</div>
+</form>
+</div>
+</div>
+
+<div class="failure" id="summary"><ul></ul></div>
+
+
+<div class="js-captcha captcha-wrap">
+<div class="input-wrapper">
+<input id="captcha" name="captcha" placeholder="验证码" required>
+</div>
+<p class="input-wrapper captcha clearfix js-refresh-captcha">
+<span>看不清？</span> <a href="javascript:;">换一张</a>
+<img class="js-captcha-img" width="120" height="30" />
+</p>
+</div>
+
+
+<div class="mobi-front">
+<div class="button-wrapper">
+<button class="sign-button js-signin" type="submit">登录知乎</button>
+</div>
+
+<div class="ft mobile">
+<a class="js-bindweibo" href="javascript:;"><i class="icon-sign icon-sign-sina"></i>微博登录</a>
+<span class="dot">·</span>
+<a class="js-bindqq qq-sign-up" href="javascript:;"><i class="icon-sign icon-sign-qq"></i>QQ 登录</a>
+<a class="js-signup" href="#signup">注册<i class="icon-sign icon-sign-arrow"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bottom">
+<div class="inner-wrapper">
+<div class="stories zg-clear">
+<div class="reps clearfix">
+
+<a target="_blank" href="/people/sky-86-5" class="rep current" data-type="member" data-token="950887fb196b0bb47b1f6a2e8c9ab410">
+
+<span class="info-card">sky，《保贝好险》上架:http://url.cn/aUJPx9</span>
+<img src="http://pic2.zhimg.com/97145be1d_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/zhuxiaobao" class="rep" data-type="member" data-token="3e5652e8f92de752a3d53ff625a2bbb7">
+
+<span class="info-card">猪小宝，博士僧 | 一级注册结构工程师</span>
+<img src="http://pic1.zhimg.com/d73a58cd4_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/patrickluo" class="rep" data-type="member" data-token="4265c545cf4082e80eea50617ff60cca">
+
+<span class="info-card">Luo Patrick，农村金融</span>
+<img src="http://pic3.zhimg.com/37b3bbce6_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/aullik5" class="rep" data-type="member" data-token="929dc8c4f87a15a8cb708a3534c8b299">
+
+<span class="info-card">道哥，微信公号：道哥的黑板报</span>
+<img src="http://pic3.zhimg.com/8e7626696_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19551762" class="rep" data-type="topic" data-token="19551762">
+
+<span class="info-card">苹果公司 (Apple Inc.)</span>
+<img src="http://pic3.zhimg.com/39420a7da_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/zhengjintiao" class="rep" data-type="member" data-token="c7ea4a83791990952e2cee95f0bebf10">
+
+<span class="info-card">郑金条，@游戏邦  @慌乱的岛 微信：zhengjintiao</span>
+<img src="http://pic3.zhimg.com/a41aac51e_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19558438" class="rep" data-type="topic" data-token="19558438">
+
+<span class="info-card">建筑</span>
+<img src="http://pic3.zhimg.com/8e1c10bc218754374553256fe6a98c56_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/hi-id" class="rep" data-type="member" data-token="55ff9b7864ecd46dd0194ac1411787d8">
+
+<span class="info-card">Hi-iD</span>
+<img src="http://pic2.zhimg.com/8ffe2ed7d_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/FantasticCathy" class="rep" data-type="member" data-token="4fb012252bdf5ee276bd506cd332f215">
+
+<span class="info-card">FantasticCathy，简单粗暴不文艺</span>
+<img src="http://pic1.zhimg.com/bdc783e25cddff78c63c3b6c0dd51c78_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19553032" class="rep" data-type="topic" data-token="19553032">
+
+<span class="info-card">广告</span>
+<img src="http://pic1.zhimg.com/70ddd5e0c_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19556950" class="rep" data-type="topic" data-token="19556950">
+
+<span class="info-card">物理学</span>
+<img src="http://pic3.zhimg.com/7a7dfc72e_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/yin-xiao-er" class="rep" data-type="member" data-token="3bb3fb6314bc29d7fb9a42977f910129">
+
+<span class="info-card">尹小二，主业卖萌，副业债券</span>
+<img src="http://pic4.zhimg.com/69feb6f649db114f98b53b0704657d9f_m.jpg">
+
+</a>
+
+<a target="_blank" href="/people/id47" class="rep" data-type="member" data-token="3fc0e5ac8e0e61552b1b0529ba49b3e7">
+
+<span class="info-card">袁浩瀚，Quant, Geek, Actuary, Photographer</span>
+<img src="http://pic3.zhimg.com/2d9b32906_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19568381" class="rep" data-type="topic" data-token="19568381">
+
+<span class="info-card">会计</span>
+<img src="http://pic1.zhimg.com/e3ba20c40_m.jpg">
+
+</a>
+
+<a target="_blank" href="/topic/19550292" class="rep" data-type="topic" data-token="19550292">
+
+<span class="info-card">iPhone</span>
+<img src="http://pic2.zhimg.com/bd6b19fc1_m.jpg">
+
+</a>
+
+</div>
+
+
+
+
+<div class="single-story">
+<i class="icon-sign icon-sign-spike"></i>
+
+<div class="single-story-inner">
+<img class="story-avatar" src="http://pic2.zhimg.com/97145be1d_m.jpg">
+<div class="story-title">
+<div>
+
+<a class="name" href="/people/sky-86-5" target="_blank">sky</a><span>《保贝好险》上架:http://url.cn/aUJPx9</span>
+
+</div>
+<div>在知乎回答了 563 个问题，35434 人关注她。</div>
+</div>
+<div class="sep"></div>
+<div class="story-content">
+
+<div class="story-content-answer">
+<span class="vote">
+6683
+</span>
+<p><a class="question_link" target="_blank" href="/question/19594639#answer-316261">「保险」到底保险吗？</a></p>
+</div>
+
+<div class="story-content-answer">
+<span class="vote">
+625
+</span>
+<p><a class="question_link" target="_blank" href="/question/19599617#answer-1242946">凤凰传奇组合中的那个男人有什么用？</a></p>
+</div>
+
+<div class="story-content-answer">
+<span class="vote">
+344
+</span>
+<p><a class="question_link" target="_blank" href="/question/19904068#answer-1050093">为什么保险业／保险公司在中国的声誉比较差？</a></p>
+</div>
+
+</div>
+<div class="sep"></div>
+<div class="story-end">sky 在 <a href="/people/sky-86-5/topic/19586942/answers" target="_blank">中国</a>、<a href="/people/sky-86-5/topic/19551077/answers" target="_blank">历史</a>、<a href="/people/sky-86-5/topic/19551147/answers" target="_blank">生活</a> 等话题下获得了 15927 个赞同</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="sitemap" style="display:none">
+
+<a href="http://www.zhihu.com/map/good_question_150315.html">2015-03-15</a>
+
+<a href="http://www.zhihu.com/map/good_question_150314.html">2015-03-14</a>
+
+<a href="http://www.zhihu.com/map/good_question_150313.html">2015-03-13</a>
+
+<a href="http://www.zhihu.com/map/good_question_150312.html">2015-03-12</a>
+
+<a href="http://www.zhihu.com/map/good_question_150311.html">2015-03-11</a>
+
+<a href="http://www.zhihu.com/map/good_question_150310.html">2015-03-10</a>
+
+<a href="http://www.zhihu.com/map/good_question_150309.html">2015-03-09</a>
+
+</div>
+<div class="footer">
+<div class="links">
+<div>
+<span>&copy; 2015 知乎</span>
+<span class="dot">·</span>
+<a target="_blank" href="/roundtable">知乎圆桌</a>
+<span class="dot">·</span>
+<a target="_blank" href="/explore">发现</a>
+<span class="dot">·</span>
+<a target="_blank" href="/app">移动应用</a>
+<span class="dot">·</span>
+<a target="_blank" href="/careers">来知乎工作</a>
+</div>
+<div>
+<a href="http://www.miibeian.gov.cn/" target="_blank">京 ICP 备 13052560 号</a>
+<span>·</span>
+<span>京公网安备 11010802010035 号</span>
+</div>
+</div>
+<a title="下载知乎 iPhone 客户端" target="_blank" class="app-link ios icon-sign icon-sign-ios" href="http://api.zhihu.com/client/download/appstore"></a>
+
+<a title="下载知乎 Android 客户端" target="_blank" class="app-link android icon-sign icon-sign-android goog-play" href="http://api.zhihu.com/client/download/play"></a>
+
+</div>
+
+</div>
+
+<script type="text/json" class="json-inline" data-name="current_user">["","","","-1","",0,0]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null]</script>
+
+<script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":0,"now":1426522102000,"abtest_mask":"------------------------------","user_attr":[0,0,0,"-","-"],"user_hash":0}</script>
+
+<script src="http://static.zhihu.com/static/ver/82cfd3bf774281811fa8287dc189988f.extern_src.min.js"></script>
+<script src="http://static.zhihu.com/static/ver/d583b757aa64c93e0cd15237ec6e5668.app_core.js"></script>
+<script src="http://static.zhihu.com/static/ver/d133ddc34e42d73c92615e8679220ad1.sign.js"></script>
+
+<meta name="entry" content="ZH.entrySignPage">
+
+<input type="hidden" name="_xsrf" value="8d521e0ecc709fe8d19f34570b64864c"/>
+</body>
+</html>

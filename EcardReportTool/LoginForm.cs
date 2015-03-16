@@ -13,9 +13,12 @@ namespace EcardReportTool
 {
     public partial class LoginForm : Form
     {
+        private WebControl wc;
+
         public LoginForm()
         {
             InitializeComponent();
+            wc = WebControl.Instance();
         }
 
         private void quit_Button_Click(object sender, EventArgs e)
@@ -41,34 +44,25 @@ namespace EcardReportTool
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                HttpWebRequest req = WebRequest.Create(@"http://ecard.efoxconn.com/verify.aspx") as HttpWebRequest;
-                HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
-                if (resp != null)
-                {
-                    using (Stream s = resp.GetResponseStream())
-                    {
-                        this.labelCaptchaImage.Image = Image.FromStream(s);
-                    }
-                    //this.labelCaptchaImage.Image = Image.FromFile(@"C:\Users\Public\Pictures\Sample Pictures\Desert.jpg");
-                }
-                else
-                    MessageBox.Show("Error", "error");
-            }
-            catch (WebException error)
-            {
-                DialogResult result= MessageBox.Show(error.Message, "Error", MessageBoxButtons.AbortRetryIgnore);
-                if(result==DialogResult.Abort){
-                    Application.Exit();
-                }
-            }
+            ReturnValue rv2 = wc.Get(@"http://www.zhihu.com", "");
+            //ReturnValue rv2 = wc.Get(@"http://img2.xgo-img.com.cn/product/33_800x600/851/ceFyLbhB6R1aQ.jpg", "");
+            WebControl.Retrieve(rv2.RetStream, "text.txt");
+            //this.labelCaptchaImage.Image = Image.FromStream(rv2.RetStream);
+            //this.labelCaptchaImage.Image.Save(@"verify.jpg");
         }
 
 
         private void labelCaptchaImage_Click(object sender, EventArgs e)
         {
-
+            ReturnValue rv = wc.Get(@"http://ecard.efoxconn.com/verify.aspx", "http://ecard.efoxconn.com");
+            try
+            {
+                this.labelCaptchaImage.Image = Image.FromStream(rv.RetStream);
+            }
+            catch (ArgumentException exception)
+            {
+                this.labelCaptchaImage.Image = Properties.Resources.redCross;
+            }
         }
 
     }

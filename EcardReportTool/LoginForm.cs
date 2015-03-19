@@ -44,11 +44,13 @@ namespace EcardReportTool
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            ReturnValue rv2 = wc.Get(@"http://www.zhihu.com", "");
-            //ReturnValue rv2 = wc.Get(@"http://img2.xgo-img.com.cn/product/33_800x600/851/ceFyLbhB6R1aQ.jpg", "");
-            WebControl.Retrieve(rv2.RetStream, "text.txt");
-            //this.labelCaptchaImage.Image = Image.FromStream(rv2.RetStream);
-            //this.labelCaptchaImage.Image.Save(@"verify.jpg");
+            ReturnValue rv = wc.Get(@"http://ecard.efoxconn.com", "/");
+            wc.GetViewState(rv);
+            ReturnValue rv2 = wc.Get(@"http://ecard.efoxconn.com/verify.aspx", @"http://ecard.efoxconn.com");
+            //WebControl.RetrieveImage(rv2.RetStream, "verify.jpg");
+            this.labelCaptchaImage.Image = Image.FromStream(rv2.RetStream);
+            this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv2.RetStream);
+            rv.RetStream.Dispose();
         }
 
 
@@ -58,6 +60,8 @@ namespace EcardReportTool
             try
             {
                 this.labelCaptchaImage.Image = Image.FromStream(rv.RetStream);
+                this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv.RetStream);
+                //rv.RetStream.Dispose();
             }
             catch (ArgumentException exception)
             {

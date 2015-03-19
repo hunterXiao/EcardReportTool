@@ -41,7 +41,7 @@ namespace EcardReportTool
             req.Referer = referer;
             req.ContentType = "application/x-www-form-urlencoded";
             req.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.2; .NET4.0C; .NET4.0E)";
-            //req.Host = host;
+            req.Host = host;
             req.AllowAutoRedirect = false;
             req.CookieContainer = cookieContainer;
         }
@@ -56,8 +56,17 @@ namespace EcardReportTool
 
                 Init(req, referer);
                 HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+
+                int retLength = (int)resp.ContentLength;
+                byte[] data = new byte[retLength];
+                Stream tempStream = resp.GetResponseStream();
+                tempStream.Read(data, 0, data.Length);
+
+                MemoryStream ms = new MemoryStream();
+                ms.Write(data, 0, data.Length);
+
                 retVal.StatusCode = resp.StatusCode;
-                retVal.RetStream = resp.GetResponseStream();
+                retVal.RetStream = ms;
             }
             catch (WebException e)
             {

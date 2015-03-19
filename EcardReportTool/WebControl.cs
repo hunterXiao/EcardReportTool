@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Net;
+using System.Drawing;
+using Captcha;
 
 namespace EcardReportTool
 {
@@ -70,6 +72,17 @@ namespace EcardReportTool
 
         //===================================================================================
 
+        public static string GetVerifyCode(string picFile) {
+            Captcha.Captcha cap = new Captcha.Captcha();
+            return cap.GetCode(picFile);
+        }
+
+        public static string GetVerifyCode(Stream picStream)
+        {
+            Captcha.Captcha cap = new Captcha.Captcha();
+            return cap.GetCode(picStream);
+        }
+
         public static string ToString(Stream srcStream)
         {
             string retStr = string.Empty;
@@ -85,6 +98,14 @@ namespace EcardReportTool
                 sw.Write(WebControl.ToString(srcStream));
             }
         }
+
+        public static void RetrieveImage(Stream srcStream, string fileName)
+        {
+            Image image = Image.FromStream(srcStream);
+            image.Save(fileName);
+            srcStream.Close();
+        }
+
 
         //===================================================================================
 

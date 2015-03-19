@@ -11,7 +11,7 @@ namespace Captcha
     public class Captcha
     {
         private readonly Dictionary<string, string> model = new CharModel().Model;
-        private Bitmap bitmap = null;
+        //private Bitmap bitmap = null;
 
         /// <summary>
         /// 从Stream对象初始化BitMap类,并返回图片验证码
@@ -21,11 +21,12 @@ namespace Captcha
 
         public string GetCode(Stream picStream)
         {
-            bitmap = new Bitmap(picStream);
+            picStream.Position = 0;
+            Bitmap bitmap = new Bitmap(picStream);
             string retCode = "";
-            Dictionary<int, string> retDict = null;
+            Dictionary<int, string> retDict = new Dictionary<int,string>();
 
-            string pixelData = GetAreaPixel(bitmap, 10, 10, 50, 12);//参数根据实际范围确定
+            string pixelData = GetAreaPixel(bitmap, 0, 4, bitmap.Width, 12);//参数根据实际范围确定
 
             //迭代字模特征值字符串与pixelDate比较，得出对应的字符
             foreach (KeyValuePair<string, string> KeyAndValue in model)
@@ -48,6 +49,7 @@ namespace Captcha
                 retCode += ret.Value;
             }
             bitmap.Dispose();
+            picStream.Dispose();
             return retCode.Length == 0 ? "????" : retCode;
 
         }
@@ -61,16 +63,16 @@ namespace Captcha
         {
             if (File.Exists(picFile))
             {
-                bitmap = new Bitmap(picFile);
+                Bitmap bitmap = new Bitmap(picFile);
                 string retCode = "";
-                Dictionary<int, string> retDict = null;
+                Dictionary<int, string> retDict = new Dictionary<int,string>();
 
                 //for (int step = 0; step < 4; step++)
                 //{
                 //    retCode += CharMatch(GetAreaPixel(bitmap, 20 + step * 50, 20, 8, 16));
                 //}
 
-                string pixelData = GetAreaPixel(bitmap, 10, 10, 50, 12);//参数根据实际范围确定
+                string pixelData = GetAreaPixel(bitmap, 0, 4, bitmap.Width, 12);//参数根据实际范围确定
 
                 //迭代字模特征值字符串与pixelDate比较，得出对应的字符
                 foreach (KeyValuePair<string, string> KeyAndValue in model)
@@ -110,15 +112,15 @@ namespace Captcha
         /// <param name="width">矩形宽度</param>
         /// <param name="height">矩形高度</param>
         /// <returns>区域内“00011110011”形式信息</returns>
-        private string GetAreaPixel(Bitmap srcBitmap, int startX, int startY, int width, int height)
+        public string GetAreaPixel(Bitmap srcBitmap, int startX, int startY, int width, int height)
         {
             string retStr = "";
-            for (int j = 0; j < height; j++)
+            for (int i = 0; i < width; i++)
             {
-                for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
                 {
-                    Color color = bitmap.GetPixel(startX + i, startY + j);
-                    if (color.R < 180 && color.G < 180 && color.B < 180)
+                    Color color = srcBitmap.GetPixel(startX+i, startY+j);
+                    if (color.G < 150 && color.B < 150)
                         retStr = retStr + "0";
                     else
                         retStr = retStr + "1";
@@ -126,6 +128,26 @@ namespace Captcha
             }
             return retStr;
         }
+
+       
+        public static string GetAreaPixelFromImage(string picFile, int startX, int startY, int width, int height)
+        {
+            Bitmap newBitmap = new Bitmap(picFile);
+            string retStr = "";
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    Color color = newBitmap.GetPixel(startX + i, startY + j);
+                    if (color.G < 150 && color.B < 150)
+                        retStr = retStr + "0";
+                    else
+                        retStr = retStr + "1";
+                }
+            }
+            return retStr;
+        }
+
 
         private string CharMatch(string charStr)
         {
@@ -147,7 +169,7 @@ namespace Captcha
         /// <returns></returns>
         public static int SubstringCount(string srcString, string subString)
         {
-            string tempString = srcString.Replace(srcString, subString);
+            string tempString = srcString.Replace(subString, "");
             return (srcString.Length - tempString.Length) / subString.Length;
         }
 

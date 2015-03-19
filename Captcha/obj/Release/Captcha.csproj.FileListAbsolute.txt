@@ -3,3 +3,8 @@ C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\Captch
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\Captcha\obj\Release\ResolveAssemblyReference.cache
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\Captcha\obj\Release\Captcha.dll
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\Captcha\obj\Release\Captcha.pdb
+D:\VSProject\EcardReportTool\Captcha\bin\Release\Captcha.dll
+D:\VSProject\EcardReportTool\Captcha\bin\Release\Captcha.pdb
+D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.dll
+D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.pdb
+D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.csprojResolveAssemblyReference.cache

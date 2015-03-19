@@ -18,7 +18,6 @@ D:\VSProject\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.Mai
 D:\VSProject\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.LoginForm.resources
 D:\VSProject\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.Properties.Resources.resources
 D:\VSProject\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.csproj.GenerateResource.Cache
-D:\VSProject\EcardReportTool\EcardReportTool\bin\Release\HtmlAgilityPack.dll
 D:\VSProject\EcardReportTool\EcardReportTool\bin\Release\HtmlAgilityPack.pdb
 D:\VSProject\EcardReportTool\EcardReportTool\bin\Release\HtmlAgilityPack.xml
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\EcardReportTool\bin\Release\EcardReportTool.exe.config
@@ -27,3 +26,4 @@ C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\EcardR
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\EcardReportTool\bin\Release\HtmlAgilityPack.xml
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.csprojResolveAssemblyReference.cache
 C:\Users\hunterShaw\documents\visual studio 2010\Projects\EcardReportTool\EcardReportTool\obj\x86\Release\EcardReportTool.csproj.GenerateResource.Cache
+D:\VSProject\EcardReportTool\EcardReportTool\bin\Release\EcardReportTool.exe.config

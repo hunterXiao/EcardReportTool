@@ -8,3 +8,8 @@ D:\VSProject\EcardReportTool\Captcha\bin\Release\Captcha.pdb
 D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.dll
 D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.pdb
 D:\VSProject\EcardReportTool\Captcha\obj\Release\Captcha.csprojResolveAssemblyReference.cache
+D:\VS2010 Project\EcardReportTool\Captcha\bin\Release\Captcha.dll
+D:\VS2010 Project\EcardReportTool\Captcha\bin\Release\Captcha.pdb
+D:\VS2010 Project\EcardReportTool\Captcha\obj\Release\Captcha.csprojResolveAssemblyReference.cache
+D:\VS2010 Project\EcardReportTool\Captcha\obj\Release\Captcha.dll
+D:\VS2010 Project\EcardReportTool\Captcha\obj\Release\Captcha.pdb

@@ -30,6 +30,13 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxOutOfTime = new System.Windows.Forms.CheckBox();
+            this.checkBoxDelayHours = new System.Windows.Forms.CheckBox();
+            this.checkBoxNormalAccount = new System.Windows.Forms.CheckBox();
+            this.checkBoxBlack = new System.Windows.Forms.CheckBox();
+            this.checkBoxTotalAccount = new System.Windows.Forms.CheckBox();
+            this.textBoxPeriod = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_ZWCheck_Download = new System.Windows.Forms.Button();
             this.button_ZWCheck_SavePath = new System.Windows.Forms.Button();
@@ -51,13 +58,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxPeriod = new System.Windows.Forms.TextBox();
-            this.checkBoxTotalAccount = new System.Windows.Forms.CheckBox();
-            this.checkBoxBlack = new System.Windows.Forms.CheckBox();
-            this.checkBoxNormalAccount = new System.Windows.Forms.CheckBox();
-            this.checkBoxDelayHours = new System.Windows.Forms.CheckBox();
-            this.checkBoxOutOfTime = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,9 +89,75 @@
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(469, 65);
-            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "选项";
+            // 
+            // checkBoxOutOfTime
+            // 
+            this.checkBoxOutOfTime.AutoSize = true;
+            this.checkBoxOutOfTime.Location = new System.Drawing.Point(385, 12);
+            this.checkBoxOutOfTime.Name = "checkBoxOutOfTime";
+            this.checkBoxOutOfTime.Size = new System.Drawing.Size(84, 16);
+            this.checkBoxOutOfTime.TabIndex = 6;
+            this.checkBoxOutOfTime.Text = "非消费时间";
+            this.checkBoxOutOfTime.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDelayHours
+            // 
+            this.checkBoxDelayHours.AutoSize = true;
+            this.checkBoxDelayHours.Location = new System.Drawing.Point(306, 38);
+            this.checkBoxDelayHours.Name = "checkBoxDelayHours";
+            this.checkBoxDelayHours.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxDelayHours.TabIndex = 5;
+            this.checkBoxDelayHours.Text = "超24小时";
+            this.checkBoxDelayHours.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxNormalAccount
+            // 
+            this.checkBoxNormalAccount.AutoSize = true;
+            this.checkBoxNormalAccount.Location = new System.Drawing.Point(306, 12);
+            this.checkBoxNormalAccount.Name = "checkBoxNormalAccount";
+            this.checkBoxNormalAccount.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxNormalAccount.TabIndex = 4;
+            this.checkBoxNormalAccount.Text = "正常结算";
+            this.checkBoxNormalAccount.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxBlack
+            // 
+            this.checkBoxBlack.AutoSize = true;
+            this.checkBoxBlack.Location = new System.Drawing.Point(205, 39);
+            this.checkBoxBlack.Name = "checkBoxBlack";
+            this.checkBoxBlack.Size = new System.Drawing.Size(60, 16);
+            this.checkBoxBlack.TabIndex = 3;
+            this.checkBoxBlack.Text = "黑名单";
+            this.checkBoxBlack.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxTotalAccount
+            // 
+            this.checkBoxTotalAccount.AutoSize = true;
+            this.checkBoxTotalAccount.Location = new System.Drawing.Point(205, 12);
+            this.checkBoxTotalAccount.Name = "checkBoxTotalAccount";
+            this.checkBoxTotalAccount.Size = new System.Drawing.Size(84, 16);
+            this.checkBoxTotalAccount.TabIndex = 2;
+            this.checkBoxTotalAccount.Text = "结账总次数";
+            this.checkBoxTotalAccount.UseVisualStyleBackColor = true;
+            // 
+            // textBoxPeriod
+            // 
+            this.textBoxPeriod.Location = new System.Drawing.Point(53, 18);
+            this.textBoxPeriod.Name = "textBoxPeriod";
+            this.textBoxPeriod.Size = new System.Drawing.Size(100, 21);
+            this.textBoxPeriod.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 21);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "期别";
             // 
             // groupBox1
             // 
@@ -106,7 +172,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 74);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(469, 120);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "对账报表";
             // 
@@ -194,7 +260,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 200);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(469, 120);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "签核报表";
             // 
@@ -274,7 +340,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 326);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 33);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 3;
             // 
             // progressBar1
             // 
@@ -283,72 +349,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(469, 14);
             this.progressBar1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "期别";
-            // 
-            // textBoxPeriod
-            // 
-            this.textBoxPeriod.Location = new System.Drawing.Point(53, 18);
-            this.textBoxPeriod.Name = "textBoxPeriod";
-            this.textBoxPeriod.Size = new System.Drawing.Size(100, 21);
-            this.textBoxPeriod.TabIndex = 1;
-            // 
-            // checkBoxTotalAccount
-            // 
-            this.checkBoxTotalAccount.AutoSize = true;
-            this.checkBoxTotalAccount.Location = new System.Drawing.Point(205, 12);
-            this.checkBoxTotalAccount.Name = "checkBoxTotalAccount";
-            this.checkBoxTotalAccount.Size = new System.Drawing.Size(84, 16);
-            this.checkBoxTotalAccount.TabIndex = 2;
-            this.checkBoxTotalAccount.Text = "结账总次数";
-            this.checkBoxTotalAccount.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxBlack
-            // 
-            this.checkBoxBlack.AutoSize = true;
-            this.checkBoxBlack.Location = new System.Drawing.Point(205, 39);
-            this.checkBoxBlack.Name = "checkBoxBlack";
-            this.checkBoxBlack.Size = new System.Drawing.Size(60, 16);
-            this.checkBoxBlack.TabIndex = 3;
-            this.checkBoxBlack.Text = "黑名单";
-            this.checkBoxBlack.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNormalAccount
-            // 
-            this.checkBoxNormalAccount.AutoSize = true;
-            this.checkBoxNormalAccount.Location = new System.Drawing.Point(306, 12);
-            this.checkBoxNormalAccount.Name = "checkBoxNormalAccount";
-            this.checkBoxNormalAccount.Size = new System.Drawing.Size(72, 16);
-            this.checkBoxNormalAccount.TabIndex = 4;
-            this.checkBoxNormalAccount.Text = "正常结算";
-            this.checkBoxNormalAccount.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxDelayHours
-            // 
-            this.checkBoxDelayHours.AutoSize = true;
-            this.checkBoxDelayHours.Location = new System.Drawing.Point(306, 38);
-            this.checkBoxDelayHours.Name = "checkBoxDelayHours";
-            this.checkBoxDelayHours.Size = new System.Drawing.Size(72, 16);
-            this.checkBoxDelayHours.TabIndex = 5;
-            this.checkBoxDelayHours.Text = "超24小时";
-            this.checkBoxDelayHours.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxOutOfTime
-            // 
-            this.checkBoxOutOfTime.AutoSize = true;
-            this.checkBoxOutOfTime.Location = new System.Drawing.Point(385, 12);
-            this.checkBoxOutOfTime.Name = "checkBoxOutOfTime";
-            this.checkBoxOutOfTime.Size = new System.Drawing.Size(84, 16);
-            this.checkBoxOutOfTime.TabIndex = 6;
-            this.checkBoxOutOfTime.Text = "非消费时间";
-            this.checkBoxOutOfTime.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

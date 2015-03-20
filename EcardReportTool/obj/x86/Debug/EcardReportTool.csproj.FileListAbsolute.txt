@@ -13,3 +13,17 @@ C:\Users\hunterShaw\Documents\Visual Studio 2010\Projects\EcardReportTool\EcardR
 C:\Users\hunterShaw\Documents\Visual Studio 2010\Projects\EcardReportTool\EcardReportTool\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\hunterShaw\Documents\Visual Studio 2010\Projects\EcardReportTool\EcardReportTool\bin\Debug\HtmlAgilityPack.xml
 C:\Users\hunterShaw\Documents\Visual Studio 2010\Projects\EcardReportTool\EcardReportTool\bin\Debug\EcardReportTool.exe.config
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\EcardReportTool.exe.config
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.exe
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.pdb
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\EcardReportTool.exe
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\EcardReportTool.pdb
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\Captcha.dll
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\Captcha.pdb
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\HtmlAgilityPack.pdb
+D:\VS2010 Project\EcardReportTool\EcardReportTool\bin\Debug\HtmlAgilityPack.xml
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.csprojResolveAssemblyReference.cache
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.MainForm.resources
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.LoginForm.resources
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.Properties.Resources.resources
+D:\VS2010 Project\EcardReportTool\EcardReportTool\obj\x86\Debug\EcardReportTool.csproj.GenerateResource.Cache

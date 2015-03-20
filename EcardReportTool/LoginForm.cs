@@ -28,13 +28,17 @@ namespace EcardReportTool
 
         private void login_Button_Click(object sender, EventArgs e)
         {
-            if (this.textBoxUserName.Text == "1")
+            string userName = this.textBoxUserName.Text;
+            string passWord = this.textBoxPassWord.Text;
+            string verifyCode = this.textBoxCaptcha.Text;
+
+            if (wc.Login(userName,passWord,wc.VIEWSTATE,verifyCode))
             {
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Error", "ErrorTitle", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("用户名/密码或验证码错误，登陆失败！", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.textBoxUserName.Clear();
                 this.textBoxPassWord.Clear();
                 this.textBoxUserName.Focus();
@@ -47,7 +51,6 @@ namespace EcardReportTool
             ReturnValue rv = wc.Get(@"http://ecard.efoxconn.com", "/");
             wc.GetViewState(rv);
             ReturnValue rv2 = wc.Get(@"http://ecard.efoxconn.com/verify.aspx", @"http://ecard.efoxconn.com");
-            //WebControl.RetrieveImage(rv2.RetStream, "verify.jpg");
             this.labelCaptchaImage.Image = Image.FromStream(rv2.RetStream);
             this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv2.RetStream);
             rv.RetStream.Dispose();
@@ -63,7 +66,7 @@ namespace EcardReportTool
                 this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv.RetStream);
                 //rv.RetStream.Dispose();
             }
-            catch (ArgumentException exception)
+            catch (ArgumentException ex)
             {
                 this.labelCaptchaImage.Image = Properties.Resources.redCross;
             }

@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Drawing;
+using System.Web;
 using Captcha;
 
 namespace EcardReportTool
@@ -49,11 +50,10 @@ namespace EcardReportTool
 
         //===================================================================================
 
-        public string GetViewState(ReturnValue retValue)
+        public void GetViewState(ReturnValue retValue)
         {
             string retVal = httpRequest.GetViewState(retValue);
             VIEWSTATE = retVal;
-            return retVal;
         }
 
         //===================================================================================
@@ -99,22 +99,16 @@ namespace EcardReportTool
             }
         }
 
-        public static void RetrieveImage(Stream srcStream, string fileName)
-        {
-            Image image = Image.FromStream(srcStream);
-            image.Save(fileName);
-            srcStream.Close();
-        }
-
-
         //===================================================================================
 
         public bool Login(string userName, string passWord, string viewState, string verifyCode, string uri = "http://ecard.efoxconn.com/login.aspx")
         {
-            //TODO:确认登陆数据发送格式
             string loginData = string.Format(@"__VIEWSTATE={0}&tbUserName={1}&tbPassword={2}&txtVerifyCode={3}&ibLogin.x=20&ibLogin.y=14",
-                                                viewState, userName, passWord, verifyCode);
-            ReturnValue retVal = Get(uri, @"http://ecard.efoxconn.com");
+                                                HttpUtility.UrlEncode(viewState),
+                                                HttpUtility.UrlEncode(userName), 
+                                                HttpUtility.UrlEncode(passWord), 
+                                                HttpUtility.UrlEncode(verifyCode));
+            ReturnValue retVal = Post(uri,@"http://ecard.efoxconn.com",loginData);
             if (retVal.StatusCode == HttpStatusCode.Found)
             {
                 return true;
@@ -125,6 +119,22 @@ namespace EcardReportTool
             }
         }
 
+
+        /// <summary>
+        /// Export excel report file
+        /// </summary>
+        /// <param name="accountCode"></param>
+        /// <param name="vendorListPath"></param>
+        public void ExportExcel(string accountCode,string vendorListPath,string savePath) {
+            string url = @"http://ecard.efoxconn.com/XF/ReporstTotal_LH.aspx";
+            ReturnValue rv = Get(url, "");
+            GetViewState(rv);
+            string postData = string.Format("__VIEWSTATE={0}&dllCode={1}&tVendor={2}&ibExcel.x=28&ibExcel.y=5",
+                                             HttpUtility.UrlEncode(VIEWSTATE),
+                                             HttpUtility.UrlEncode(accountCode),
+                                             HttpUtility.UrlEncode(vendorListPath));
+            ReturnValue rv2 = Post(url, url, postData);
+        }
     }
 
 }

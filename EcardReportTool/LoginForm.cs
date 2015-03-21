@@ -32,16 +32,21 @@ namespace EcardReportTool
             string passWord = this.textBoxPassWord.Text;
             string verifyCode = this.textBoxCaptcha.Text;
 
-            if (wc.Login(userName,passWord,wc.VIEWSTATE,verifyCode))
+            if (wc.Login(userName, passWord, wc.VIEWSTATE, verifyCode))
             {
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("用户名/密码或验证码错误，登陆失败！", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("用户名/密码或验证码错误", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.textBoxUserName.Clear();
                 this.textBoxPassWord.Clear();
                 this.textBoxUserName.Focus();
+                ReturnValue rv = wc.Get(@"http://ecard.efoxconn.com/verify.aspx", @"http://ecard.efoxconn.com");
+                this.labelCaptchaImage.Image = Image.FromStream(rv.RetStream);
+                this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv.RetStream);
+                rv.RetStream.Close();
+                rv.RetStream.Dispose();
             }
 
         }
@@ -54,6 +59,7 @@ namespace EcardReportTool
             this.labelCaptchaImage.Image = Image.FromStream(rv2.RetStream);
             this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv2.RetStream);
             rv.RetStream.Dispose();
+            rv2.RetStream.Dispose();
         }
 
 

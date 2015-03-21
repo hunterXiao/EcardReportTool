@@ -11,7 +11,7 @@ using HtmlAgilityPack;
 
 namespace EcardReportTool
 {
-
+   
     /// <summary>
     /// Represents the return structure of HttpWebResponse
     /// </summary>
@@ -26,6 +26,7 @@ namespace EcardReportTool
     /// </summary>
     public class HttpRequest
     {
+        
         private static CookieContainer cookieContainer = new CookieContainer();
 
         /// <summary>
@@ -40,9 +41,10 @@ namespace EcardReportTool
             req.KeepAlive = true;
             req.Referer = referer;
             req.ContentType = "application/x-www-form-urlencoded";
-            req.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.2; .NET4.0C; .NET4.0E)";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0";
             req.Host = host;
             req.AllowAutoRedirect = false;
+            //req.Proxy = new WebProxy("127.0.0.1:8080");
             req.CookieContainer = cookieContainer;
         }
 
@@ -67,6 +69,7 @@ namespace EcardReportTool
 
                 retVal.StatusCode = resp.StatusCode;
                 retVal.RetStream = ms;
+                resp.Close();
             }
             catch (WebException e)
             {
@@ -81,13 +84,13 @@ namespace EcardReportTool
         {
             string retStr = string.Empty;
             ReturnValue retVal = new ReturnValue();
-            Encoding encode = Encoding.GetEncoding(defaultEncode);
+            //Encoding encode = Encoding.GetEncoding(defaultEncode);
             try
             {
                 HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
                 Init(req, referer);
-                string encodeData = HttpUtility.UrlEncode(postData, encode);
-                byte[] bs = Encoding.ASCII.GetBytes(encodeData);
+                //string encodeData = HttpUtility.UrlEncode(postData, encode);
+                byte[] bs = Encoding.ASCII.GetBytes(postData);
                 req.Method = "POST";
                 req.ContentLength = bs.Length;
                 using (Stream reqStream = req.GetRequestStream())
@@ -98,6 +101,7 @@ namespace EcardReportTool
                 HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
                 retVal.StatusCode = resp.StatusCode;
                 retVal.RetStream = resp.GetResponseStream();
+                resp.Close();
             }
             catch (WebException e)
             {
@@ -108,15 +112,18 @@ namespace EcardReportTool
 
         public string GetViewState(ReturnValue retVal)
         {
+            retVal.RetStream.Position=0;
             string viewState = string.Empty;
-            //byte[] bArray = Encoding.Default.GetBytes(retVal.RetStream);
-            //MemoryStream ms = new MemoryStream(bArray);
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.Load(retVal.RetStream);
             HtmlNode node = doc.DocumentNode.SelectSingleNode("//input[@name=\"__VIEWSTATE\"]");
             if (node != null)
             {
                 viewState = node.Attributes["value"].Value;
+            }
+            else
+            {
+                MessageBox.Show("__VIEWSTATE 获取失败，当前为null", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             retVal.RetStream.Close();
             return viewState;

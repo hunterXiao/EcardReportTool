@@ -59,13 +59,17 @@ namespace EcardReportTool
                 Init(req, referer);
                 HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
 
-                int retLength = (int)resp.ContentLength;
-                byte[] data = new byte[retLength];
-                Stream tempStream = resp.GetResponseStream();
-                tempStream.Read(data, 0, data.Length);
+                Stream tempStream=resp.GetResponseStream();
+                MemoryStream ms=new MemoryStream();
 
-                MemoryStream ms = new MemoryStream();
-                ms.Write(data, 0, data.Length);
+                byte[] data = new byte[1024];
+                int size = tempStream.Read(data, 0, data.Length);
+
+                while (size > 0)
+                {
+                    ms.Write(data, 0, data.Length);
+                    size = tempStream.Read(data, 0, data.Length);
+                }
 
                 retVal.StatusCode = resp.StatusCode;
                 retVal.RetStream = ms;
@@ -84,7 +88,7 @@ namespace EcardReportTool
         {
             string retStr = string.Empty;
             ReturnValue retVal = new ReturnValue();
-            //Encoding encode = Encoding.GetEncoding(defaultEncode);
+
             try
             {
                 HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
@@ -99,8 +103,20 @@ namespace EcardReportTool
                     reqStream.Close();
                 }
                 HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
+                Stream tempStream = resp.GetResponseStream();
+                MemoryStream ms = new MemoryStream();
+
+                byte[] data = new byte[1024];
+                int size = tempStream.Read(data, 0, data.Length);
+
+                while (size > 0)
+                {
+                    ms.Write(data, 0, data.Length);
+                    size = tempStream.Read(data, 0, data.Length);
+                }
+
                 retVal.StatusCode = resp.StatusCode;
-                retVal.RetStream = resp.GetResponseStream();
+                retVal.RetStream = ms;
                 resp.Close();
             }
             catch (WebException e)

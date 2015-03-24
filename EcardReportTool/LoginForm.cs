@@ -38,7 +38,7 @@ namespace EcardReportTool
             }
             else
             {
-                MessageBox.Show("用户名/密码或验证码错误", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("用户名/密码或验证码错误", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.textBoxUserName.Clear();
                 this.textBoxPassWord.Clear();
                 this.textBoxUserName.Focus();
@@ -70,7 +70,6 @@ namespace EcardReportTool
             {
                 this.labelCaptchaImage.Image = Image.FromStream(rv.RetStream);
                 this.textBoxCaptcha.Text = WebControl.GetVerifyCode(rv.RetStream);
-                //rv.RetStream.Dispose();
             }
             catch (ArgumentException ex)
             {
